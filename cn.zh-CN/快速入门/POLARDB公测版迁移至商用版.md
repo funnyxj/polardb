@@ -10,7 +10,7 @@
 
 1.  进入[POLARDB控制台](https://polardb.console.aliyun.com/)。
 2.  单击集群ID，进入详细信息页面。
-3.  在访问信息区域，单击白名单列表后面的![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/13787/15345686243689_zh-CN.png)图标，在弹出的对话框中添加IP地址0.0.0.0/0（表示允许所有IP地址访问该集群）。
+3.  在访问信息区域，单击白名单列表后面的![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/13787/15345686783689_zh-CN.png)图标，在弹出的对话框中添加IP地址0.0.0.0/0（表示允许所有IP地址访问该集群）。
 
 **说明：** 迁移完成后，需要将IP地址0.0.0.0/0从源数据库和目标数据库的IP白名单中移除。
 
@@ -27,7 +27,7 @@
 1.  进入[DTS控制台](https://dts.console.aliyun.com/)。
 2.  在左侧导航栏选择**数据迁移**，然后在右上角单击**创建迁移任务**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/13787/15345686243682_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/13787/15345686783682_zh-CN.png)
 
 3.  （可选）填写任务名称。
 
@@ -42,7 +42,7 @@
     -   端口：输入3306
     -   数据库账号：POLARDB数据库实例的账号。
     -   数据库密码：以上账号的密码。
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/13787/15345686243683_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/13787/15345686783683_zh-CN.png)
 
 5.  单击右下角的**授权白名单并进入下一步**。
 6.  选择**迁移类型**和**迁移对象**。
@@ -55,10 +55,12 @@
 
             DTS 会将源数据库迁移对象的存量数据全部迁移到目标实例。
 
-    -   **迁移对象**：选择要迁移的对象，单击向右的箭头，将选中的对象添加到右侧。迁移对象的选择粒度细化为：库、表、列三个粒度。
+    -   **迁移对象**：选择要迁移的对象，单击向右的箭头，将选中的对象添加到右侧。
 
-        **说明：** 暂时不支持对系统表的迁移。
+        **说明：** 
 
+        -   暂时不支持对系统表的迁移。
+        -   目标集群中不能有和迁移对象同名的对象。将鼠标移至右侧框中的对象，单击**编辑**按钮，即可修改迁移后的对象名。
 7.  单击右下角的**预检查并启动**。
 
     如果预检查失败，可以点击具体检查项后的检查结果，查看具体的失败详情，并根据失败原因修复后，重新进行预检查。
@@ -66,7 +68,7 @@
 8.  确认DTS购买信息，阅读并勾选**服务条款**，单击**立即购买并启动**。
 9.  单击目标地域，查看迁移状态。迁移完成时，状态为**已完成**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/13787/15345686243685_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/13787/15345686783685_zh-CN.png)
 
     **说明：** 迁移完成后，需要将IP地址0.0.0.0/0从源数据库和目标数据库的IP白名单中移除。
 
