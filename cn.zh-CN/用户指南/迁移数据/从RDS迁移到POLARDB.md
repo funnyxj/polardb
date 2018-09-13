@@ -4,17 +4,13 @@
 
 本文介绍如何使用DTS通过内网迁移RDS for MySQL数据库到POLARDB数据库。
 
-## 前提条件 {#section_ksx_tsb_dfb .section}
-
-源实例为RDS for MySQL 5.6实例。
-
 ## 迁移步骤 {#section_v5x_xqq_tdb .section}
 
 1.  登录[DTS控制台](https://dts.console.aliyun.com)。
 2.  在页面左侧，选择**数据迁移**。
 3.  单击**创建迁移任务**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/3032/15368351242106_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/3032/15368353202106_zh-CN.png)
 
 4.  （可选）填写任务名称。
 
@@ -27,7 +23,7 @@
     -   RDS实例ID：选择RDS实例。
     -   数据库账号：输入RDS实例的账号。
     -   数据库密码：输入以上账号的密码。
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/3032/15368351242107_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/3032/15368353202107_zh-CN.png)
 
 6.  单击**测试连接**，确认DTS可以连接到源RDS实例。
 7.  填写目标POLARDB集群信息。
@@ -37,7 +33,7 @@
     -   POLARDB实例ID：选择POLARDB集群。
     -   数据库账号：输入POLARDB集群的账号。
     -   数据库密码：输入以上账号的密码。
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/3032/15368351242108_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/3032/15368353202108_zh-CN.png)
 
 8.  单击**测试连接**，确认DTS可以连接到目标POLARDB集群。
 9.  单击右下角的**授权白名单并进入下一步**。
@@ -65,7 +61,7 @@
 
         -   暂时不支持对系统表的迁移。
         -   目标集群中不能有和迁移对象同名的对象。将鼠标移至右侧框中的对象，单击**编辑**按钮，即可修改迁移后的对象名。
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/3032/15368351252109_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/3032/15368353202109_zh-CN.png)
 
 11. 单击右下角的**预检查并启动**，成功后单击**下一步**。
 
