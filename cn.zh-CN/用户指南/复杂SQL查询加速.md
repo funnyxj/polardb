@@ -27,8 +27,7 @@ SQL加速的连接地址不会转发请求到主实例，避免对主实例的�
 
 ## 最佳实践 {#section_l5m_qkq_4fb .section}
 
--   表的主键由多种数据类型组合而成时，如果第一个字段具有很好的区分度，SQL加速的性能会更好。
--   如果使用SQL加速地址，建议您不同时使用读写分离地址，否则两个连接地址会互相影响性能。（SQL加速地址与读写分离地址后续将会合并为一个地址，则不再存在此影响。）
+表的主键由多种数据类型组合而成时，如果第一个字段具有很好的区分度，SQL加速的性能会更好。
 
 ## 注意事项 {#section_sz1_xw5_4fb .section}
 
@@ -44,6 +43,9 @@ SQL加速的连接地址不会转发请求到主实例，避免对主实例的�
     -   日期型：YEAR
 -   SQL加速要读取的表的字符集为utf8或utf8mb4，主键为VARCHAR, INT、BIGINT、FLOAT、DOUBLE或SHORT类型，且要读取的数据不包含视图或以下类型的字段：BINARY、VARBINARY、TINYBLOB、MEDIUMBLOB、BLOB、LONGBLOB、SET、ENUM。
 
+    **说明：** POLARDB 100% 兼容MySQL，包括语法、字符集、数据类型等。以上前提条件仅适用于SQL加速功能。
+
+
 ## 使用SQL加速功能 {#section_t5v_lgq_4fb .section}
 
 1.  登录[POLARDB控制台](https://polardb.console.aliyun.com)。
@@ -51,7 +53,7 @@ SQL加速的连接地址不会转发请求到主实例，避免对主实例的�
 3.  选择**集群列表**，单击目标集群的ID。
 4.  在**访问信息**中，单击**申请集群SQL加速连接地址（VPC）**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24120/154260752414289_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24120/154365832114289_zh-CN.png)
 
 5.  在弹出的对话框中，单击**确定**。
 6.  设置地址的前缀，并单击**确定**。
@@ -61,7 +63,7 @@ SQL加速的连接地址不会转发请求到主实例，避免对主实例的�
 
 不需要使用SQL加速功能时，您可以在**集群信息**页面释放SQL加速地址。
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24120/154260752414306_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24120/154365832114306_zh-CN.png)
 
 ## 示例 {#section_np1_xgc_pfb .section}
 
