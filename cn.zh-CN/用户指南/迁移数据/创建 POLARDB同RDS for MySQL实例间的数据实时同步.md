@@ -37,21 +37,21 @@ RENAME TABLE、TRUNCATE TABLE
 
 1.  **A** \> **B**即两个实例之间的单向同步。且要求实例 B 中同步的对象必须为只读，否则会导致同步链路异常，出现数据不一致的情况。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/79400/154452847234086_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/79400/154501524334086_zh-CN.png)
 
 2.  **A** \> **B/C/D**即一对多的分发式同步架构,这个架构对目标POLARDB实例个数没有限制，但是要求目标实例中的同步对象必须为只读，否则会导致同步链路异常，出现数据不一致的情况。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/79400/154452847234087_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/79400/154501524334087_zh-CN.png)
 
 3.  **B/C/D** \> **A**即多对一的数据汇总架构。对于这种多对一的同步架构，为了保证同步数据一致性，要求每条同步链路同步的对象不相同。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/79400/154452847234088_zh-CN.jpg)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/79400/154501524334088_zh-CN.jpg)
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/79400/154452847234089_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/79400/154501524334089_zh-CN.png)
 
 4.  **A** \> **B** \> **A**即实例A和实例B之间的双向同步架构。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/79400/154452847234090_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/79400/154501524334090_zh-CN.png)
 
     **说明：** 
 
@@ -77,8 +77,8 @@ RENAME TABLE、TRUNCATE TABLE
 
 ## 准备事项 {#section_h2r_xwy_bgb .section}
 
--   在配置同步作业前，要确保同步作业的源POLARDB实例及目标RDS实例都已经存在。如果不存在，那么请先购买实例 [购买RDS实例](https://rds-buy.aliyun.com/rdsBuy?spm=5176.7920929.603378.pay1.3daf41d6Kzc5k5#/create/rds) [购买POLARDB实例](https://common-buy.aliyun.com/?spm=5176.polardb.0.0.19494135BCEHqO&commodityCode=polardb_sub&regionId=cn-hangzhou#/buy)。
--   在配置同步作业前，需要先将POLARDB实例所在区域的DTS IP段添加到POLARDB实例的白名单中。各区域DTS IP段参考[用户手册](https://help.aliyun.com/document_detail/84900.html?spm=a2c4g.11174283.6.654.61217b02Z5l4fe)。
+-   在配置同步作业前，要确保同步作业的源POLARDB实例及目标RDS实例都已经存在。如果不存在，那么请先购买实例 [购买RDS实例](https://rds-buy.aliyun.com/rdsBuy) [购买POLARDB实例](https://common-buy.aliyun.com/)。
+-   在配置同步作业前，需要先将POLARDB实例所在区域的DTS IP段添加到POLARDB实例的白名单中。各区域DTS IP段参考[用户手册](https://help.aliyun.com/document_detail/84900.html)。
 
 ## 配置步骤 {#section_g3l_jxy_bgb .section}
 
@@ -111,7 +111,7 @@ RENAME TABLE、TRUNCATE TABLE
 
     -   同步拓扑
 
-        对于POLARDB与RDS之间的同步拓扑支持：单项同步及双向同步。此处选择单项同步。
+        对于POLARDB与RDS之间的同步拓扑支持：单向同步及双向同步。此处选择单向同步。
 
     -   同步链路规格
 
@@ -121,7 +121,7 @@ RENAME TABLE、TRUNCATE TABLE
 
         数量为一次性购买的同步链路的数量，如果购买的是按量付费实例，一次最多购买 99 条链路。
 
-        当购买完同步实例，返回数据传输控制台，点击新购链路右侧的“配置同步作业” 开始链路配置。
+        当购买完同步实例，返回数据传输控制台，单击新购链路右侧的“配置同步作业” 开始链路配置。
 
 
 **同步链路连接信息配置**
@@ -136,7 +136,7 @@ RENAME TABLE、TRUNCATE TABLE
     -   实例类型：选择通过专线接入的本地DB。
     -   对端专有网络：此处配置POLARDB的VPC ID。具体VPC ID可以到POLARDB控制台-实例信息界面获取。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/79400/154452847234091_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/79400/154501524334091_zh-CN.png)
 
     -   主机名或IP地址：配置POLARDB的IP地址，可以通过ping POLARDB的连接地址，获取对应的IP地址。
     -   端口：配置POLARDB的监听端口。
@@ -148,13 +148,13 @@ RENAME TABLE、TRUNCATE TABLE
     -   实例 ID：配置源RDS实例的实例ID。
     -   连接方式：
 
-        -   对于RDS实例，支持非加密连接和SSL安全连接两种方式。可以根据需要选择连接方式。如果要选择SSL安全连接，那必须先打开RDS的加密连接，开启方法参考[用户指南](https://help.aliyun.com/document_detail/32474.html?spm=a2c4g.11174283.6.715.5e774c22KkMl9D)。
+        -   对于RDS实例，支持非加密连接和SSL安全连接两种方式。可以根据需要选择连接方式。如果要选择SSL安全连接，那必须先打开RDS的加密连接，开启方法参考[用户指南](https://help.aliyun.com/document_detail/32474.html)。
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/79400/154452847234092_zh-CN.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/79400/154501524334092_zh-CN.png)
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/79400/154452847234093_zh-CN.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/79400/154501524334093_zh-CN.png)
 
-    当这些内容配置完成后，可以点击**授权白名单并进入下一步**。
+    当这些内容配置完成后，可以单击**授权白名单并进入下一步**。
 
 
 **授权实例白名单**。
@@ -163,7 +163,7 @@ RENAME TABLE、TRUNCATE TABLE
 
 为了保证同步作业的稳定性，在同步过程中，请勿将这些服务器 IP 从 RDS 实例的白名单中删除。
 
-当白名单授权后，点击下一步，进行同步对象的配置。
+当白名单授权后，单击下一步，进行同步对象的配置。
 
 **选择同步对象**
 
@@ -173,7 +173,7 @@ RENAME TABLE、TRUNCATE TABLE
 
 如果选择的某张表，那么只有这个表的 drop/alter/truncate/rename table，create/drop index 的操作会同步到目标库。
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/79400/154452847234094_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/79400/154501524334094_zh-CN.png)
 
 当配置完同步对象后，进入同步初始化配置。
 
@@ -183,11 +183,17 @@ RENAME TABLE、TRUNCATE TABLE
 
 同步初始化类型细分为：结构初始化，全量数据初始化。默认情况下，需要选择结构初始化及全量初始化。
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/79400/154452847234095_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/79400/154501524434095_zh-CN.png)
 
 **预检查**
 
 当上面所有选项配置完成后，即进入启动之前的预检查。
+
+如果预检查失败，那么可以单击具体检查项后的按钮，查看具体的失败详情，并根据失败原因修复后，重新进行预检查。
+
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/79400/154501524434357_zh-CN.png)
+
+**说明：** 如果预检查失败，提示源库需要开启binlog，您可以[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex)进行申请。
 
 当同步作业配置完成后，数据传输服务会进行限制预检查，当预检查通过后，DTS直接启动同步作业。
 
