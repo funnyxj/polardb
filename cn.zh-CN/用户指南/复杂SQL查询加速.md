@@ -1,10 +1,10 @@
 # 复杂SQL查询加速 {#concept_c1h_sbf_4fb .concept}
 
-集群中有多个只读实例时，每个查询都只在一个只读实例上执行，没有同时利用多个只读实例的计算能力，对于大表（一千万行以上）的复杂查询，响应时间不够短。因此，POLARDB提供**复杂SQL查询加速**（简称：SQL加速）功能，针对这种分析型场景提升查询性能。
+集群中有多个只读节点时，每个查询都只在一个只读节点上执行，没有同时利用多个只读节点的计算能力，对于大表（一千万行以上）的复杂查询，响应时间不够短。因此，POLARDB提供**复杂SQL查询加速**（简称：SQL加速）功能，针对这种分析型场景提升查询性能。
 
-SQL加速功能提供一个专门的数据库连接地址，您只需将该地址配置到应用中，该连接所发送的每个读请求都会被分发到所有的只读实例，并行计算。只读实例越多，SQL加速的性能越好。
+SQL加速功能提供一个专门的数据库连接地址，您只需将该地址配置到应用中，该连接所发送的每个读请求都会被分发到所有的只读节点，并行计算。只读节点越多，SQL加速的性能越好。
 
-SQL加速的连接地址不会转发请求到主实例，避免对主实例的影响。
+SQL加速的连接地址不会转发请求到主节点，避免对主节点的影响。
 
 ## 功能优势 {#section_a5t_cpt_4fb .section}
 
@@ -31,13 +31,13 @@ SQL加速的连接地址不会转发请求到主实例，避免对主实例的�
 
 ## 注意事项 {#section_sz1_xw5_4fb .section}
 
--   SQL加速地址从只读实例读取数据，理论上主实例和只读实例之间存在数据延迟，对于要求实例之间100%零延迟的场景，不建议使用SQL加速地址。
+-   SQL加速地址从只读节点读取数据，理论上主节点和只读节点之间存在数据延迟，对于要求节点之间100%零延迟的场景，不建议使用SQL加速地址。
 -   对于Double或Float字段，查询结果的最大精度为小数点后4位。
 
 ## 前提条件 {#section_u1y_tbf_4fb .section}
 
--   POLARDB集群中有至少两个只读实例。如需添加只读实例，请参见[增加只读实例](cn.zh-CN/用户指南/集群和实例管理/增加或删除只读实例.md#section_zb3_yhd_lfb)。
--   集群中实例的规格至少为4核32GB。如需调整规格，请参见[变更配置](cn.zh-CN/用户指南/集群和实例管理/变更配置.md)。
+-   POLARDB集群中有至少两个只读节点。如需添加只读节点，请参见[增加只读实例](cn.zh-CN/用户指南/集群管理/增加或删除只读实例.md#section_zb3_yhd_lfb)。
+-   集群中节点的规格至少为4核32GB。如需调整规格，请参见[变更配置](cn.zh-CN/用户指南/集群管理/变更配置.md)。
 -   数据库中的**所有表**不能包含以下数据类型，否则SQL加速功能无法开启。
     -   数值型：[FIXED\[\(M\[,D\]\)\] \[UNSIGNED\]](https://dev.mysql.com/doc/refman/5.6/en/fixed-point-types.html) 、[DOUBLE PRECISION\[\(M,D\)\] \[UNSIGNED\]](https://dev.mysql.com/doc/refman/5.6/en/floating-point-types.html)
     -   日期型：YEAR
@@ -50,24 +50,18 @@ SQL加速的连接地址不会转发请求到主实例，避免对主实例的�
 
 1.  登录[POLARDB控制台](https://polardb.console.aliyun.com)。
 2.  选择集群所在地域。
-3.  选择**集群列表**，单击目标集群的ID。
-4.  在**访问信息**中，单击**申请集群SQL加速连接地址（VPC）**。
+3.  找到目标集群，单击集群的ID。
+4.  在**访问信息**中，找到**SQL加速地址**，单击**申请**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24120/154365832114289_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24120/154524056514289_zh-CN.png)
 
 5.  在弹出的对话框中，单击**确定**。
 6.  设置地址的前缀，并单击**确定**。
-7.  在应用中配置该SQL加速的地址即可。
-
-## 释放SQL加速地址 {#section_kk2_4gv_4fb .section}
-
-不需要使用SQL加速功能时，您可以在**集群信息**页面释放SQL加速地址。
-
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24120/154365832114306_zh-CN.png)
+7.  在应用中配置该SQL加速地址即可。
 
 ## 示例 {#section_np1_xgc_pfb .section}
 
-**背景：**以下表格用于记录工作人员在仓库中的作业产出情况，每小时操作的商品件数。记录会准实时地持续更新，高峰期 TPS 近万，存在上亿条记录。POLARDB集群中使用4个只读实例。
+**背景：**以下表格用于记录工作人员在仓库中的作业产出情况，每小时操作的商品件数。记录会准实时地持续更新，高峰期 TPS 近万，存在上亿条记录。POLARDB集群中使用4个只读节点。
 
 ```
 Create Table `labor_operate_stat` (
@@ -204,7 +198,7 @@ order by c1;
 
 相当于先做完t1 union t2 except t3, 最后才是对前面的结果按照c1进行全局排序
 
-`Intersect`操作符的优先级是高于 `UNION`和`EXCEPT`的, 例如：
+`Intersect`操作符的优先级是高于`UNION`和`EXCEPT`的, 例如：
 
 ```
 select * from t1
