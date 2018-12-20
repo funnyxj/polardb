@@ -27,3 +27,5 @@
     2018年12月21日将上线SQL洞察功能，提供SQL日志的审计、查询、分析等功能。SQL洞察是收费功能，定价请参见[POLARDB付费方式及价格](https://help.aliyun.com/document_detail/68498.html?spm=a2c4g.11186623.6.552.63202b5eCKNbFW)。
 
 
+**说明：** 新版POLARDB控制台如果遇到打不开的情况，建议使用最新版Chrome浏览器，IE等其他浏览器可能存在少量兼容性问题。
+
