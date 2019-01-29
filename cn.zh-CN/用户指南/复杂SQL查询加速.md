@@ -33,15 +33,18 @@ SQL加速的连接地址不会转发请求到主节点，避免对主节点的�
 
 -   SQL加速地址从只读节点读取数据，理论上主节点和只读节点之间存在数据延迟，对于要求节点之间100%零延迟的场景，不建议使用SQL加速地址。
 -   对于Double或Float字段，查询结果的最大精度为小数点后4位。
+-   Select语句不含Limit子句时，默认输出10000条记录。如果含有Limit子句，可以指定输出任意条记录。
+
+**说明：** 以上描述仅适用于SQL加速功能，即仅当您使用SQL加速地址时适用。
 
 ## 前提条件 {#section_u1y_tbf_4fb .section}
 
--   POLARDB集群中有至少两个只读节点。如需添加只读节点，请参见[增加只读实例](cn.zh-CN/用户指南/集群管理/增加或删除只读实例.md#section_zb3_yhd_lfb)。
+-   POLARDB集群中有至少两个只读节点。如需添加只读节点，请参见[增加只读节点](cn.zh-CN/用户指南/集群管理/增加或删除节点.md#section_zb3_yhd_lfb)。
 -   集群中节点的规格至少为4核32GB。如需调整规格，请参见[变更配置](cn.zh-CN/用户指南/集群管理/变更配置.md)。
 -   数据库中的**所有表**不能包含以下数据类型，否则SQL加速功能无法开启。
     -   数值型：[FIXED\[\(M\[,D\]\)\] \[UNSIGNED\]](https://dev.mysql.com/doc/refman/5.6/en/fixed-point-types.html) 、[DOUBLE PRECISION\[\(M,D\)\] \[UNSIGNED\]](https://dev.mysql.com/doc/refman/5.6/en/floating-point-types.html)
     -   日期型：YEAR
--   SQL加速要读取的表的字符集为utf8或utf8mb4，主键为VARCHAR, INT、BIGINT、FLOAT、DOUBLE或SHORT类型，且要读取的数据不包含视图或以下类型的字段：BINARY、VARBINARY、TINYBLOB、MEDIUMBLOB、BLOB、LONGBLOB、SET、ENUM。
+-   SQL加速要读取的表的字符集为utf8或utf8mb4，表名由大小写字母、数字或下划线组成，主键为VARCHAR, INT、BIGINT、FLOAT、DOUBLE或SHORT类型，且要读取的数据不包含视图或以下类型的字段：BINARY、VARBINARY、TINYBLOB、MEDIUMBLOB、BLOB、LONGBLOB、SET、ENUM。
 
     **说明：** POLARDB 100% 兼容MySQL，包括语法、字符集、数据类型等。以上前提条件仅适用于SQL加速功能。
 
@@ -53,7 +56,7 @@ SQL加速的连接地址不会转发请求到主节点，避免对主节点的�
 3.  找到目标集群，单击集群的ID。
 4.  在**访问信息**中，找到**SQL加速地址**，单击**申请**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24120/154524056514289_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24120/154874910614289_zh-CN.png)
 
 5.  在弹出的对话框中，单击**确定**。
 6.  设置地址的前缀，并单击**确定**。
