@@ -44,7 +44,7 @@ SQL加速的连接地址不会转发请求到主节点，避免对主节点的�
 -   数据库中的**所有表**不能包含以下数据类型，否则SQL加速功能无法开启。
     -   数值型：[FIXED\[\(M\[,D\]\)\] \[UNSIGNED\]](https://dev.mysql.com/doc/refman/5.6/en/fixed-point-types.html) 、[DOUBLE PRECISION\[\(M,D\)\] \[UNSIGNED\]](https://dev.mysql.com/doc/refman/5.6/en/floating-point-types.html)
     -   日期型：YEAR
--   SQL加速要读取的表的字符集为utf8或utf8mb4，表名由大小写字母、数字或下划线组成，主键为VARCHAR, INT、BIGINT、FLOAT、DOUBLE或SHORT类型，且要读取的数据不包含视图或以下类型的字段：BINARY、VARBINARY、TINYBLOB、MEDIUMBLOB、BLOB、LONGBLOB、SET、ENUM。
+-   SQL加速要读取的表为非分区表，字符集为utf8或utf8mb4，表名由大小写字母、数字或下划线组成，主键为VARCHAR, INT、BIGINT、FLOAT、DOUBLE或SHORT类型，且要读取的数据不包含视图或以下类型的字段：BINARY、VARBINARY、TINYBLOB、MEDIUMBLOB、BLOB、LONGBLOB、SET、ENUM。
 -   **说明：** POLARDB 100% 兼容MySQL，包括语法、字符集、数据类型等。以上前提条件仅适用于SQL加速功能。
 
 
@@ -55,7 +55,7 @@ SQL加速的连接地址不会转发请求到主节点，避免对主节点的�
 3.  找到目标集群，单击集群的ID。
 4.  在**访问信息**中，找到**SQL加速地址**，单击**申请**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24120/154875099714289_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24120/155185746914289_zh-CN.png)
 
 5.  在弹出的对话框中，单击**确定**。
 6.  设置地址的前缀，并单击**确定**。
