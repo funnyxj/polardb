@@ -11,7 +11,7 @@ POLARDB是一款完全兼容MySQL的云原生数据库，默认使用了更高�
 -   开启Binlog后会导致写性能下降，读性能不受影响。
 -   拉取、订阅或同步Binlog（例如使用DTS等工具）时，建议使用POLARDB的**主地址**，因为直接指向生成Binlog的主节点，具有更好的兼容性和稳定性。您可以在基本信息页面查看主地址，如下图所示。
 
-    ![主地址](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/155021/155470369743468_zh-CN.png)
+    ![主地址](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/155021/155470416843468_zh-CN.png)
 
 
 ## 开启Binlog {#section_ebg_frx_3hb .section}
@@ -22,11 +22,11 @@ POLARDB是一款完全兼容MySQL的云原生数据库，默认使用了更高�
 4.  在左侧导航栏选择**配置与管理** \> **参数配置**。
 5.  搜索**loose\_polar\_log\_bin**，将当前值修改为ON\_WITH\_GTID，并单击**提交修改**。
 
-    ![开启Binlog](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/155030/155470369743470_zh-CN.png)
+    ![开启Binlog](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/155030/155470416843470_zh-CN.png)
 
 6.  在右侧提示重启的对话框中单击**确定**。
 
-    **说明：** 如果报错提示**The operation is not permitted due to lock of cluster**，请[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex)开启。
+    **说明：** 如果报错提示**Custins minor version does not support current action**，请[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex)开启。
 
 
 ## 常见问题 {#section_k2h_cly_3hb .section}
