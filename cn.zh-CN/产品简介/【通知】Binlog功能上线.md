@@ -14,11 +14,13 @@ POLARDB支持开启二进制日志Binlog。
 
 ## 前提条件 {#section_bj3_hty_3hb .section}
 
-集群创建于2019年4月5日之后。如果是在2019年4月5日之前创建的集群，暂时需要[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex)来开启Binlog。
+集群创建于2019年4月5日之后。如果是在2019年4月5日之前创建的集群，暂时需要[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex)进行小版本升级，之后即可在控制台手动开启Binlog。
 
 ## 如何开启Binlog {#section_ffz_tsx_3hb .section}
 
-Binlog功能默认关闭，开启Binlog请参见[如何开启Binlog](../../../../../cn.zh-CN/用户指南/如何开启Binlog.md#)，开启Binlog后您可以连接[ElasticSearch](https://help.aliyun.com/document_detail/90777.html)、[AnalyticDB](https://help.aliyun.com/document_detail/98724.html)等数据产品，也可以搭建[POLARDB到RDS](https://help.aliyun.com/document_detail/102184.html)、[RDS到POLARDB](https://help.aliyun.com/document_detail/102185.html)或POLARDB之间的数据实时同步。
+Binlog功能默认关闭，开启Binlog请参见[如何开启Binlog](../../../../cn.zh-CN/用户指南/如何开启Binlog.md#)。
+
+开启Binlog后您可以连接[ElasticSearch](https://help.aliyun.com/document_detail/90777.html)、[AnalyticDB](https://help.aliyun.com/document_detail/98724.html)等数据产品，也可以搭建[POLARDB到RDS](https://help.aliyun.com/document_detail/102184.html)、[RDS到POLARDB](https://help.aliyun.com/document_detail/102185.html)或POLARDB之间的数据实时同步。
 
 **警告：** 开启后Binlog默认保存2周，超出两周的Binlog文件会被自动删除。您可以修改参数**loose\_expire\_logs\_hours**（取值范围0~2376，单位：小时）以设置Binlog的保存时长。0表示不自动删除Binlog文件。
 
@@ -32,7 +34,7 @@ Binlog的空间属于集群存储空间的一部分，需要收取[存储费用]
 -   开启Binlog后会导致写性能下降，读性能不受影响。
 -   拉取、订阅或同步Binlog（例如使用DTS等工具）时，建议使用POLARDB的**主地址**，因为直接指向生成Binlog的主节点，具有更好的兼容性和稳定性。您可以在基本信息页面查看主地址，如下图所示。
 
-    ![主地址](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/155021/155480026443468_zh-CN.png)
+    ![主地址](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/155021/155626928243468_zh-CN.png)
 
 
 ## 常见问题 {#section_ckk_fsk_5gb .section}
